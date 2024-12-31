@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body onload="startClock()">
+    <div class="clock" id="clock"></div>
+
+    <h1>Project Tracker</h1>
+    
+    <!-- Project Form -->
+    <form action="{{ url_for('log_project') }}" method="POST">
+        <label for="project_name">Project Name:</label>
+        <input type="text" id="project_name" name="project_name" required>
+        
+        <label for="project_type">Project Type:</label>
+        <select id="project_type" name="project_type">
+            <option value="Professional">Professional</option>
+            <option value="Personal">Personal</option>
+        </select>
+
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes"></textarea>
+        
+        <button type="submit">Log Project</button>
+    </form>
+
+    <!-- Start Timer Form -->
+    <form action="{{ url_for('start_timer') }}" method="post">
+        <label for="timer_project_name">Project Name:</label>
+        <input type="text" id="timer_project_name" name="project_name" required>
+        <button type="submit">Start Timer</button>
+    </form>
+
+    <!-- Stop Timer Form -->
+    <form action="{{ url_for('stop_timer') }}" method="post">
+        <button type="submit">Stop Timer</button>
+    </form>
+
+    <!-- View Summary Button -->
+    <button onclick="window.location.href='{{ url_for('summary') }}'">View Summary</button>
+    <button onclick="window.location.href='{{ url_for('calendar') }}'">Go to Scheduler</button>
+</body>
+</html>
